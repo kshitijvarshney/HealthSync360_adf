@@ -126,8 +126,6 @@
 			{
 				"name": "Landing_to_bronz",
 				"type": "DatabricksNotebook",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Source to Landing ingestion",
@@ -169,8 +167,6 @@
 			{
 				"name": "bronz_to_silver",
 				"type": "DatabricksNotebook",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Landing_to_bronz",
