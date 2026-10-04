@@ -118,7 +118,7 @@
 				}
 			},
 			{
-				"name": "Landing_to_bronz",
+				"name": "Landing_to_bronze",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
@@ -159,11 +159,11 @@
 				}
 			},
 			{
-				"name": "bronz_to_silver",
+				"name": "bronze_to_silver",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "Landing_to_bronz",
+						"activity": "Landing_to_bronze",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -178,7 +178,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/HealthSync360/HealthSync360_adb/Bronz_to_silver",
+					"notebookPath": "/HealthSync360/HealthSync360_adb/Bronze_to_silver",
 					"baseParameters": {
 						"landing_timestamp": {
 							"value": "@variables('start_time')",
@@ -208,7 +208,7 @@
 				"type": "Script",
 				"dependsOn": [
 					{
-						"activity": "bronz_to_silver",
+						"activity": "bronze_to_silver",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -323,7 +323,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "bronz_to_silver",
+						"activity": "bronze_to_silver",
 						"dependencyConditions": [
 							"Succeeded"
 						]
