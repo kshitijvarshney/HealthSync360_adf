@@ -215,7 +215,7 @@
 					},
 					"adf_run_id": {
 						"type": "string",
-						"defaultValue": "'ABC'"
+						"defaultValue": "'Ktj'"
 					}
 				},
 				"variables": {
@@ -355,7 +355,7 @@
 						}
 					},
 					{
-						"name": "Landing_to_bronz",
+						"name": "Landing_to_bronze",
 						"type": "DatabricksNotebook",
 						"dependsOn": [
 							{
@@ -396,11 +396,11 @@
 						}
 					},
 					{
-						"name": "bronz_to_silver",
+						"name": "bronze_to_silver",
 						"type": "DatabricksNotebook",
 						"dependsOn": [
 							{
-								"activity": "Landing_to_bronz",
+								"activity": "Landing_to_bronze",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -415,7 +415,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/HealthSync360/HealthSync360_adb/Bronz_to_silver",
+							"notebookPath": "/HealthSync360/HealthSync360_adb/Bronze_to_silver",
 							"baseParameters": {
 								"landing_timestamp": {
 									"value": "@variables('start_time')",
@@ -445,7 +445,7 @@
 						"type": "Script",
 						"dependsOn": [
 							{
-								"activity": "bronz_to_silver",
+								"activity": "bronze_to_silver",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -468,7 +468,7 @@
 								{
 									"type": "Query",
 									"text": {
-										"value": "update [ctrl].[audit_log] set status = 'SUCCESS', end_time = SYSUTCDATETIME(), records_written = @{activity('bronz_to_silver').output.runOutPut}\nWhere adf_run_id = @{pipeline().parameters.adf_run_id} and table_id = @{pipeline().parameters.table_id}\n\n",
+										"value": "update [ctrl].[audit_log] set status = 'SUCCESS', end_time = SYSUTCDATETIME(), records_written = @{activity('bronze_to_silver').output.runOutPut}\nWhere adf_run_id = @{pipeline().parameters.adf_run_id} and table_id = @{pipeline().parameters.table_id}\n\n",
 										"type": "Expression"
 									}
 								}
@@ -561,7 +561,7 @@
 						"type": "IfCondition",
 						"dependsOn": [
 							{
-								"activity": "bronz_to_silver",
+								"activity": "bronze_to_silver",
 								"dependencyConditions": [
 									"Succeeded"
 								]
