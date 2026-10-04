@@ -62,7 +62,7 @@
 					"source": {
 						"type": "PostgreSqlV2Source",
 						"query": {
-							"value": "@select * from PUBLIC.@{activity('Read Table Details').output.firstRow.source_table_name}",
+							"value": "select * from PUBLIC.@{activity('Read Table Details').output.firstRow.source_table_name}",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00"
@@ -126,6 +126,8 @@
 			{
 				"name": "Landing_to_bronz",
 				"type": "DatabricksNotebook",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Source to Landing ingestion",
@@ -167,6 +169,8 @@
 			{
 				"name": "bronz_to_silver",
 				"type": "DatabricksNotebook",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Landing_to_bronz",
