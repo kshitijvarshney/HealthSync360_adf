@@ -186,7 +186,7 @@
 				"typeProperties": {
 					"notebookPath": "/HealthSync360/HealthSync360_adb/Bronz_to_silver",
 					"baseParameters": {
-						"loading_timestamp": {
+						"landing_timestamp": {
 							"value": "@variables('start_time')",
 							"type": "Expression"
 						},
