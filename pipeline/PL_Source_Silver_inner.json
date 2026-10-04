@@ -122,6 +122,84 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Landing_to_bronz",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Source to Landing ingestion",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/HealthSync360/HealthSync360_adb/Landing_to_Bronze",
+					"baseParameters": {
+						"loading_timestamp": {
+							"value": "@variables('start_time')",
+							"type": "Expression"
+						},
+						"source_system": {
+							"value": "@activity('Read Table Details').output.firstRow.source_system",
+							"type": "Expression"
+						},
+						"table_name": {
+							"value": "@activity('Read Table Details').output.firstRow.bronze_table_name",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_AzureDatabricks",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "bronz_to_silver",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Landing_to_bronz",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/HealthSync360/HealthSync360_adb/Bronz_to_silver",
+					"baseParameters": {
+						"loading_timestamp": {
+							"value": "@variables('start_time')",
+							"type": "Expression"
+						},
+						"table_name": {
+							"value": "@activity('Read Table Details').output.firstRow.silver_table_name",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_AzureDatabricks",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
