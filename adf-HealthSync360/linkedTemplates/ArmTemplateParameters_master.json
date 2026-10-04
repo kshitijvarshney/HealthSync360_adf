@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-HealthSync360"
+		},
+		"lks_PostgreSql_properties_typeProperties_server": {
+			"value": "ep-flat-fog-b3j63wdp-pooler.c-4.ap-southeast-1.aws.neon.tech"
+		},
+		"lks_PostgreSql_properties_typeProperties_database": {
+			"value": "neondb"
+		},
+		"lks_PostgreSql_properties_typeProperties_username": {
+			"value": "neondb_owner"
+		},
+		"ls_AzureDatabricks_properties_typeProperties_existingClusterId": {
+			"value": "1003-123407-n762thnf"
+		},
+		"ls_AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://HealthSync360-keyvalt.vault.azure.net/"
+		},
+		"ls_AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "healthsync360-server.database.windows.net"
+		},
+		"ls_AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "HealthSync360_MetadataDB"
+		},
+		"ls_AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "HealthSync360"
+		},
+		"ls_adls_properties_typeProperties_url": {
+			"value": "https://healthsync360sa.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
