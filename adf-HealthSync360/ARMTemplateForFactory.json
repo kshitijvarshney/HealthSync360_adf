@@ -426,7 +426,7 @@
 									"type": "Expression"
 								},
 								"merge_keys": {
-									"value": "@coalesce(activity('Read Table Details').output.firstRow.load_type,'')",
+									"value": "@coalesce(activity('Read Table Details').output.firstRow.merge_keys,'')",
 									"type": "Expression"
 								},
 								"load_type": {
